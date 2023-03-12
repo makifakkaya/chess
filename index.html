@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess</title>
+    <style>
+        .chessboard {
+            width: 400px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .row {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .square {
+            width: 50px;
+            height: 50px;
+        }
+
+        .white {
+            background-color: wheat;
+        }
+
+        .black {
+            background-color: rgb(215, 170, 87);
+        }
+
+        .square img {
+            width: 100%;
+            align-items: center;
+            align-self: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="chessboard">
+
+    </div>
+
+    <script>
+        const chessboard = document.querySelector('.chessboard');
+        const coords = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+        let coordIndex = 0;
+
+        for (let row = 0; row < 8; row++) {
+            coordIndex = 0;
+            const rowElem = document.createElement('div');
+            rowElem.classList.add('row');
+
+            for (let col = 0; col < 8; col++) {
+                const squareElem = document.createElement('div');
+                squareElem.classList.add('square');
+
+                if ((row + col) % 2 === 0) {
+                    squareElem.classList.add('white');
+                } else {
+                    squareElem.classList.add('black');
+                }
+
+                squareElem.id = "" + coords[coordIndex] + (8 - row);
+                coordIndex++;
+
+                if (row === 1) {
+                    const imgElem = document.createElement('img');
+                    imgElem.src = 'https://upload.wikimedia.org/wikipedia/commons/c/cd/Chess_pdt60.png';
+                    squareElem.classList.add('piyon');
+                    squareElem.classList.add('siyah');
+                    squareElem.appendChild(imgElem);
+                }
+                if (row === 6) {
+                    const imgElem = document.createElement('img');
+                    imgElem.src = 'https://upload.wikimedia.org/wikipedia/commons/0/04/Chess_plt60.png';
+                    squareElem.classList.add('piyon');
+                    squareElem.classList.add('beyaz');
+                    squareElem.appendChild(imgElem);
+                }
+                if (row === 0) {
+                    let imgSrc = '';
+                    switch (col) {
+                        case 0:
+                        case 7:
+                            imgSrc = 'https://upload.wikimedia.org/wikipedia/commons/a/a0/Chess_rdt60.png';
+                            squareElem.classList.add('kale');
+                            squareElem.classList.add('siyah');
+                            break;
+                        case 1:
+                        case 6:
+                            imgSrc = 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Chess_ndt60.png';
+                            squareElem.classList.add('at');
+                            squareElem.classList.add('siyah');
+                            break;
+                        case 2:
+                        case 5:
+                            imgSrc = 'https://upload.wikimedia.org/wikipedia/commons/8/81/Chess_bdt60.png';
+                            squareElem.classList.add('fil');
+                            squareElem.classList.add('siyah');
+                            break;
+                        case 3:
+                            imgSrc = 'https://upload.wikimedia.org/wikipedia/commons/a/af/Chess_qdt60.png';
+                            squareElem.classList.add('vezir');
+                            squareElem.classList.add('siyah');
+                            break;
+                        case 4:
+                            imgSrc = 'https://upload.wikimedia.org/wikipedia/commons/e/e3/Chess_kdt60.png';
+                            squareElem.classList.add('şah');
+                            squareElem.classList.add('siyah');
+                            break;
+                    }
+
+                    if (imgSrc) {
+                        const imgElem = document.createElement('img');
+                        imgElem.src = imgSrc;
+                        squareElem.appendChild(imgElem);
+                    }
+                }
+
+                if (row === 7) {
+                    let imgSrc = '';
+                    switch (col) {
+                        case 0:
+                        case 7:
+                            imgSrc = 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Chess_rlt60.png';
+                            squareElem.classList.add('kale');
+                            squareElem.classList.add('beyaz');
+                            break;
+                        case 1:
+                        case 6:
+                            imgSrc = 'https://upload.wikimedia.org/wikipedia/commons/2/28/Chess_nlt60.png';
+                            squareElem.classList.add('at');
+                            squareElem.classList.add('beyaz');
+                            break;
+                        case 2:
+                        case 5:
+                            imgSrc = 'https://upload.wikimedia.org/wikipedia/commons/9/9b/Chess_blt60.png';
+                            squareElem.classList.add('fil');
+                            squareElem.classList.add('beyaz');
+                            break;
+                        case 3:
+                            imgSrc = 'https://upload.wikimedia.org/wikipedia/commons/4/49/Chess_qlt60.png';
+                            squareElem.classList.add('vezir');
+                            squareElem.classList.add('beyaz');
+                            break;
+                        case 4:
+                            imgSrc = 'https://upload.wikimedia.org/wikipedia/commons/3/3b/Chess_klt60.png';
+                            squareElem.classList.add('şah');
+                            squareElem.classList.add('beyaz');
+                            break;
+                    }
+
+                    if (imgSrc) {
+                        const imgElem = document.createElement('img');
+                        imgElem.src = imgSrc;
+                        squareElem.appendChild(imgElem);
+                    }
+                }
+                rowElem.appendChild(squareElem);
+            }
+
+            chessboard.appendChild(rowElem);
+            coordIndex++;
+        }
+
+    </script>
+</body>
+
+</html>
